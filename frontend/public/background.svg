@@ -1,0 +1,29 @@
+<svg width="375.000000" height="812.000000" viewBox="0 0 375 812" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<filter id="filter_1_5940_dd" x="-180.000000" y="262.000000" width="523.000000" height="523.000000" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+			<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+			<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+			<feGaussianBlur stdDeviation="66.6667" result="effect_layerBlur_1"/>
+		</filter>
+		<filter id="filter_1_5941_dd" x="31.000000" y="-7.000000" width="523.000000" height="523.000000" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+			<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+			<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+			<feGaussianBlur stdDeviation="66.6667" result="effect_layerBlur_1"/>
+		</filter>
+		<clipPath id="clip1_5938">
+			<rect id="Bg" width="375.000000" height="812.000000" fill="white" fill-opacity="0"/>
+		</clipPath>
+	</defs>
+	<rect id="Bg" width="375.000000" height="812.000000" fill="#1D1F2D" fill-opacity="1.000000"/>
+	<g clip-path="url(#clip1_5938)">
+		<g filter="url(#filter_1_5940_dd)">
+			<circle id="Ellipse 4" cx="81.500000" cy="523.500000" r="61.500000" fill="#FF6151" fill-opacity="1.000000"/>
+		</g>
+		<g filter="url(#filter_1_5941_dd)">
+			<circle id="Ellipse 3" cx="292.500000" cy="254.500000" r="61.500000" fill="#35B972" fill-opacity="1.000000"/>
+		</g>
+	</g>
+</svg>

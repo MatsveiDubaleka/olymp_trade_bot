@@ -1,0 +1,21 @@
+services:
+  api:
+    container_name: back-app
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      - BOT_TOKEN=7071748435:AAFARlHciQIEkv3xTq7OzE8f76-hBhwGhv8
+      - WEB_APP_URL=https://quotex-bot-official.com/
+    ports:
+      - 5000:5000
+  web:
+    depends_on: [api]
+    container_name: front-app
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    restart: always
