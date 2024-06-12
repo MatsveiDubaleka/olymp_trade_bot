@@ -4,16 +4,18 @@ import StepBar from '../../components/StepBar';
 import Button from '../../components/Button';
 import Langs from '../../assets/langs/main';
 import { LangsType } from '../../types';
-import ReactGA from 'react-ga';
+import useAnalyticsEventTracker from '../../hooks/useAnalyticsEventTracker';
+import ReactGA from 'react-ga4';
+const TRACKING_ID = 'G-CTDPEB03MJ';
 
+ReactGA.initialize(TRACKING_ID);
 export default function App() {
   const [lang, setLang] = useState<LangsType>('en');
   const [step, setStep] = useState<number>(0);
+  const gaEventTracker = useAnalyticsEventTracker('Test Olymp Trade Bot');
 
   useEffect(() => {
     const TG = window?.Telegram?.WebApp;
-    ReactGA.initialize('G-CTDPEB03MJ');
-    ReactGA.pageview(window.location.pathname + window.location.search);
 
     if (TG) {
       TG?.expand();
@@ -36,7 +38,9 @@ export default function App() {
       }
     }
 
-    if (TG && USER_DATA?.id) createAnalytics(USER_DATA?.id, 'open_app');
+    if (TG && USER_DATA?.id) {
+      createAnalytics(USER_DATA?.id, 'open_app');
+    }
 
     const isOnboardingPassed = localStorage.getItem(
       'isOnboardingPassed',
@@ -53,31 +57,19 @@ export default function App() {
     }, 2000);
   }, []);
 
+  useEffect(() => {
+    ReactGA.send({
+      hitType: 'pageview',
+      page: window.location.href,
+      title: 'Test Title',
+    });
+  }, []);
+
   const createAnalytics = async (
     userId: number,
     event: 'start' | 'open_app',
   ) => {
-    ReactGA.event({
-      category: 'User',
-      action: `${event} UserID:${userId}`,
-    });
-    // await axios.post(
-    //   'https://api2.amplitude.com/2/httpapi',
-    //   {
-    //     api_key: 'c0fc35db3546a631eff59adae7856367',
-    //     events: [
-    //       {
-    //         device_id: userId,
-    //         event_type: event,
-    //       },
-    //     ],
-    //   },
-    //   {
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //   },
-    // );
+    gaEventTracker(event + ' userId:' + userId);
   };
 
   const followLink = (locale: LangsType) => {
@@ -174,7 +166,7 @@ export default function App() {
       )}
 
       {step === 3 && (
-        <div className='px-5 mt-2 w-full h-full flex flex-col items-center justify-start gap-[32px]'>
+        <div className='px-5 mt-5 w-full h-full flex flex-col items-center justify-start gap-[32px]'>
           {THIRD_SECTION_DATA.map((data, index) => {
             return (
               <Card title={data.title} subtitle={data.subtitle} index={index} />
