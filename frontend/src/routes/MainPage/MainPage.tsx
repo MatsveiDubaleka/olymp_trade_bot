@@ -6,7 +6,7 @@ import Langs from '../../assets/langs/main';
 import { LangsType } from '../../types';
 import useAnalyticsEventTracker from '../../hooks/useAnalyticsEventTracker';
 import ReactGA from 'react-ga4';
-const TRACKING_ID = 'G-CTDPEB03MJ';
+const TRACKING_ID = 'G-8ZR09W99SF';
 
 ReactGA.initialize(TRACKING_ID);
 export default function App() {

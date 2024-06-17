@@ -6,8 +6,8 @@ services:
       dockerfile: Dockerfile
     restart: always
     environment:
-      - BOT_TOKEN=7071748435:AAFARlHciQIEkv3xTq7OzE8f76-hBhwGhv8
-      - WEB_APP_URL=https://quotex-bot-official.com/
+      - BOT_TOKEN=6001994688:AAFGfTXD4rscEW9F3kRwLNIi1ViGzV86gA8
+      - WEB_APP_URL=https://olymp-bot-official.com/
     ports:
       - 5000:5000
   web:

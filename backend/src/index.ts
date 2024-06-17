@@ -21,6 +21,9 @@ const createAnalytics = async (userId: number, event: 'start' | 'open_app') => {
       api_key: 'c0fc35db3546a631eff59adae7856367',
       events: [
         {
+          event_properties: {
+            name: 'olymptrade',
+          },
           device_id: userId,
           event_type: event,
         },
