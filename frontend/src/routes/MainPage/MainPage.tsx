@@ -6,13 +6,19 @@ import Langs from '../../assets/langs/main';
 import { LangsType } from '../../types';
 import useAnalyticsEventTracker from '../../hooks/useAnalyticsEventTracker';
 import ReactGA from 'react-ga4';
-const TRACKING_ID = 'G-8ZR09W99SF';
+const REDIRECT_URL = 'REACT_APP_REDIRECT_URL_PLACEHOLDER';
+const LID = 'REACT_APP_LID';
+const GOOGLE_TOKEN = 'REACT_APP_GOOGLE_TOKEN';
 
-ReactGA.initialize(TRACKING_ID);
+ReactGA.initialize(GOOGLE_TOKEN);
 export default function App() {
   const [lang, setLang] = useState<LangsType>('en');
   const [step, setStep] = useState<number>(0);
-  const gaEventTracker = useAnalyticsEventTracker('Test Olymp Trade Bot');
+  const gaEventTracker = useAnalyticsEventTracker('Test Quotex Trade Bot');
+
+  console.log('REDIRECT_URL', REDIRECT_URL);
+  console.log('LID', LID);
+  console.log('GOOGLE_TOKEN', GOOGLE_TOKEN);
 
   useEffect(() => {
     const TG = window?.Telegram?.WebApp;
@@ -38,31 +44,22 @@ export default function App() {
       }
     }
 
-    if (TG && USER_DATA?.id) {
-      createAnalytics(USER_DATA?.id, 'open_app');
-    }
+    if (TG && USER_DATA?.id) createAnalytics(USER_DATA?.id, 'open_app');
 
     const isOnboardingPassed = localStorage.getItem(
       'isOnboardingPassed',
     ) as string;
 
-    // if (isOnboardingPassed) {
-    //   setTimeout(() => {
-    //     followLink(USER_LANGUAGE);
-    //   }, 1000);
-    // }
+    if (isOnboardingPassed) {
+      setTimeout(() => {
+        followLink(USER_LANGUAGE);
+      }, 1000);
+    }
 
     setTimeout(() => {
       setStep(1);
     }, 2000);
-  }, []);
-
-  useEffect(() => {
-    ReactGA.send({
-      hitType: 'pageview',
-      page: window.location.href,
-      title: 'Test Title',
-    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const createAnalytics = async (
@@ -74,13 +71,11 @@ export default function App() {
 
   const followLink = (locale: LangsType) => {
     if (locale === 'pt-br') {
-      window.location.assign(`https://qxbroker.com/pt/sign-up?lid=666838/`);
+      window.location.assign(`${REDIRECT_URL}/pt/sign-up?lid=${LID}`);
     } else if (locale === 'es' || locale === 'ms') {
-      window.location.assign(
-        `https://qxbroker.com/${locale}/sign-up?lid=666838/`,
-      );
+      window.location.assign(`${REDIRECT_URL}/${locale}/sign-up?lid=${LID}`);
     } else {
-      window.location.assign(`https://qxbroker.com/en/sign-up?lid=666838/`);
+      window.location.assign(`${REDIRECT_URL}/en/sign-up?lid=${LID}`);
     }
   };
 

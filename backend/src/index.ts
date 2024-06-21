@@ -4,8 +4,8 @@ import Lang from './locales/main';
 import axios from 'axios';
 dotenv.config({ path: '../.env' });
 
-const token = process.env.BOT_TOKEN || '000';
-const webAppUrl = process.env.WEB_APP_URL || '';
+const token = process.env.BOT_TOKEN || 'not_exist';
+const webAppUrl = process.env.WEB_APP_URL || 'not_exist';
 
 export type LangsType = 'en' | 'es' | 'pt-br' | 'ms';
 
@@ -14,15 +14,15 @@ let USER_LANG_CODE: LangsType = 'en';
 const bot = new Telegraf(token);
 let USER_ID: number = 0;
 
-const createAnalytics = async (userId: number, event: 'start' | 'open_app') => {
-  const res = await axios.post(
+const createAnalytics = async (userId: number, event: 'start') => {
+  await axios.post(
     'https://api2.amplitude.com/2/httpapi',
     {
-      api_key: 'c0fc35db3546a631eff59adae7856367',
+      api_key: process.env.AMPLITUDE_API_KEY || 'not_exist',
       events: [
         {
           event_properties: {
-            name: 'olymptrade',
+            name: 'olymp_trade',
           },
           device_id: userId,
           event_type: event,
