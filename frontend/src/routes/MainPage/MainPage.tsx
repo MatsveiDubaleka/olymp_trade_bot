@@ -54,6 +54,7 @@ export default function App() {
       setTimeout(() => {
         followLink(USER_LANGUAGE);
       }, 1000);
+      return;
     }
 
     setTimeout(() => {
