@@ -70,13 +70,7 @@ export default function App() {
   };
 
   const followLink = (locale: LangsType) => {
-    if (locale === 'pt-br') {
-      window.location.assign(`${REDIRECT_URL}/pt/sign-up?lid=${LID}`);
-    } else if (locale === 'es' || locale === 'ms') {
-      window.location.assign(`${REDIRECT_URL}/${locale}/sign-up?lid=${LID}`);
-    } else {
-      window.location.assign(`${REDIRECT_URL}/en/sign-up?lid=${LID}`);
-    }
+    window.location.assign(`${REDIRECT_URL}`);
   };
 
   const THIRD_SECTION_DATA = [
