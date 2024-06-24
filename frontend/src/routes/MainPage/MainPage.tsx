@@ -71,7 +71,7 @@ export default function App() {
   };
 
   const followLink = (locale: LangsType) => {
-    window.location.assign(`${REDIRECT_URL}`);
+    window.location.assign(REDIRECT_URL);
   };
 
   const THIRD_SECTION_DATA = [
